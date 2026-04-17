@@ -13,6 +13,7 @@
 
 ### Next step
 
+- init react@query, tailwind, tanstack@router, shadcn/ui
 - create a minimal backend endpoint for validator data
 - inspect the real IOTA JSON-RPC response shape
 - define the frontend-facing DTO
