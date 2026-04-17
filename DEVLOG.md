@@ -12,10 +12,10 @@
 - added base project documentation files
 - initialized tanstack@router
 - initialized tailwind, shadcn/ui
+- initalized a simple theme mode toggle component
 
 ### Next step
 
-- init theming from shadcn/ui
 - merge client and main gitignore files
 - add basic eslint and prettier configuration
 - init react@query

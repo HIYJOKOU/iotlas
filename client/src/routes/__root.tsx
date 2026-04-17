@@ -1,8 +1,10 @@
+import { ModeToggle } from "@/components/theme/theme-mode-toggle";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 
 const RootLayout = () => (
   <>
-    <div className="p-2 flex gap-2">
+    <div className="p-2 flex justify-start items-center gap-2">
+      <ModeToggle />
       <Link to="/" className="[&.active]:font-bold">
         Home
       </Link>
