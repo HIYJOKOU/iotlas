@@ -1,0 +1,13 @@
+{
+  "name": "iotlas",
+  "version": "1.0.0",
+  "description": "Interactive 3D globe for exploring live IOTA validators.",
+  "main": "index.js",
+  "scripts": {
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
