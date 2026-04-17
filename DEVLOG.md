@@ -13,10 +13,10 @@
 - initialized tanstack@router
 - initialized tailwind, shadcn/ui
 - initalized a simple theme mode toggle component
+- merge client and main gitignore files
 
 ### Next step
 
-- merge client and main gitignore files
 - add basic eslint and prettier configuration
 - init react@query
 - create a minimal backend endpoint for validator data
