@@ -8,6 +8,6 @@
     "dev:server": "npm --prefix server run dev"
   },
   "keywords": [],
-  "author": "",
+  "author": "hiyjokou",
   "license": "ISC"
 }
