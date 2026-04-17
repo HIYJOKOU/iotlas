@@ -14,11 +14,13 @@
 - initialized tailwind, shadcn/ui
 - initalized a simple theme mode toggle component
 - merge client and main gitignore files
+- added basic eslint and prettier configuration
 
 ### Next step
 
-- add basic eslint and prettier configuration
-- init react@query
-- create a minimal backend endpoint for validator data
 - inspect the real IOTA JSON-RPC response shape
+- create a minimal backend endpoint for validator data
 - define the frontend-facing DTO
+- init react@query
+- create a simple page to display the validator data
+- add a simple loading state

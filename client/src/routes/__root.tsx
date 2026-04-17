@@ -1,5 +1,5 @@
-import { ModeToggle } from "@/components/theme/theme-mode-toggle";
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { ModeToggle } from '@/components/theme/theme-mode-toggle'
+import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 
 const RootLayout = () => (
   <>
@@ -18,6 +18,6 @@ const RootLayout = () => (
     <hr />
     <Outlet />
   </>
-);
+)
 
-export const Route = createRootRoute({ component: RootLayout });
+export const Route = createRootRoute({ component: RootLayout })

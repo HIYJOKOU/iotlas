@@ -5,9 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev:client": "npm --prefix client run dev",
-    "dev:server": "npm --prefix server run dev"
+    "dev:server": "npm --prefix server run dev",
+    "lint": "npm --prefix client run lint && npm --prefix server run lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "hiyjokou",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.8.3"
+  }
 }
