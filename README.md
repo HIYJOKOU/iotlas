@@ -12,3 +12,29 @@ The project is organized as a lightweight monorepo:
 
 - `client/` – React + Vite + TypeScript frontend
 - `server/` – Express + TypeScript backend acting as a data layer / proxy for IOTA JSON-RPC
+
+## Run locally
+
+Install dependencies:
+
+```bash
+npm install
+npm --prefix client install
+npm --prefix server install
+```
+
+Start frontend:
+
+```bash
+npm run dev:client
+# alias:
+npm run client:dev
+```
+
+Start backend:
+
+```bash
+npm run dev:server
+# alias:
+npm run server:dev
+```
