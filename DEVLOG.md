@@ -38,8 +38,27 @@
 - Created a simple in-memory cache for geolocation data to reduce repeated API calls.
 - Updated the backend endpoint to include geolocation data for validators.
 
+## Day 3 - Frontend data layer and dashboard
+
+### Thoughts
+
+- Globe found out to be easier to implement than expected, While testing globe.gl, I used `ChatGPT` to generate custom texture for the globe. It was a fun experiment, and the results were surprisingly good. The custom texture adds a unique visual style to the globe, making it more visually appealing for users and style of the website. Also used `ChatGPT` to generate logo for iotlas.live which results in changing the project name from `iotlas` to `gIOTA.live` it was driven by `gmonads` used `g` as geo/globe prefix.
+- While playing with design and layout, I realized reason why `gmonads.com` don't have white theme - its hard to achieve good readability of the website with globe in center. For now I will stick to dark theme, but components for changing themes are already in place, so it should be easy to add light theme later if needed.
+- For the MVP, I will focus on building a simple dashboard shell with a header, footer, and main content area. The interactive globe will be the centerpiece of the home page, with additional sections for validator details and network statistics.
+
+### Completed
+
+- initialized API layer on client side with network-aware base URL
+- integrated TanStack Query and added query client provider
+- added home overview query hook
+- added global network state with Jotai and network selector component
+- rebuilt root layout into app shell with sticky header and footer
+- redesigned home, about, and validators routes into card-based views
+- added initial interactive 3D globe component
+- added client env example file with VITE_API_URL
+
 ### Next steps
 
-- Initialize TanStack Query.
-- Create a simple page to display validator data.
-- Add loading and error states.
+- make globe fully responsive
+- add more information about chain on the `/home` api call
+- work on websocket connection to get live updates from the server

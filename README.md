@@ -11,7 +11,65 @@ The goal of this task is to build a responsive web application inspired by moder
 The project is organized as a lightweight monorepo:
 
 - `client/` – React + Vite + TypeScript frontend
-- `server/` – Express + TypeScript backend acting as a data layer / proxy for IOTA JSON-RPC
+- `server/` – Express + TypeScript backend acting as a data layer / proxy for @iota/sdk
+
+## Requirements
+
+- Node.js 22+
+
+## Tech stack
+
+Frontend:
+
+- React 19
+- TypeScript
+- Vite
+- TanStack Router
+- TanStack Query
+- Tailwind CSS
+- shadcn/ui
+- Jotai
+- Ky
+- react-globe.gl
+- Three.js
+
+Backend:
+
+- Node.js
+- Express
+- TypeScript
+
+## Environment
+
+Client env file:
+
+- `client/.env.example`
+
+Variable:
+
+```bash
+VITE_API_URL=http://localhost:3001
+```
+
+Backend env file:
+
+- `server/.env.example`
+
+Variables:
+
+```bash
+PORT=3001
+IOTA_MAINNET_RPC_URL=https://api.mainnet.iota.cafe:443
+IOTA_TESTNET_RPC_URL=https://api.testnet.iota.cafe:443
+IOTA_DEVNET_RPC_URL=https://api.devnet.iota.cafe:443
+```
+
+## Data flow
+
+- frontend calls `/api/:network/home` via a Ky client
+- network is selected in the UI and stored in a Jotai atom
+- data fetching and caching is handled by TanStack Query
+- backend aggregates and enriches IOTA validator data
 
 ## Run locally
 

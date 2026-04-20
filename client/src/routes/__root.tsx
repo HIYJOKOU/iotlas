@@ -1,23 +1,17 @@
-import { ModeToggle } from '@/components/theme/theme-mode-toggle'
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-
-const RootLayout = () => (
-  <>
-    <div className="p-2 flex justify-start items-center gap-2">
-      <ModeToggle />
-      <Link to="/" className="[&.active]:font-bold">
-        Home
-      </Link>
-      <Link to="/validators" className="[&.active]:font-bold">
-        Validators
-      </Link>
-      <Link to="/about" className="[&.active]:font-bold">
-        About
-      </Link>
-    </div>
-    <hr />
-    <Outlet />
-  </>
-)
+import { Footer } from '@/components/footer'
+import { Header } from '@/components/header'
+import { createRootRoute, Outlet } from '@tanstack/react-router'
 
 export const Route = createRootRoute({ component: RootLayout })
+
+function RootLayout() {
+  return (
+    <div className="app-shell flex min-h-dvh flex-col text-foreground">
+      <Header />
+      <main className="w-full flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  )
+}
