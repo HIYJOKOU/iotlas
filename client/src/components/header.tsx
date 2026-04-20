@@ -48,7 +48,7 @@ function NavPillLink({ to, children }: NavPillLinkProps) {
   return (
     <Link
       to={to}
-      className="inline-flex items-center whitespace-nowrap rounded-lg border border-transparent px-2.5 py-1.5 text-sm font-medium text-zinc-500 transition-all duration-300 ease-out hover:-translate-y-px hover:bg-zinc-950/8 hover:text-zinc-950 hover:backdrop-blur-md dark:text-zinc-400 dark:hover:bg-white/8 dark:hover:text-zinc-100 [&.active]:-translate-y-px [&.active]:border-zinc-950/15 [&.active]:bg-zinc-950/10 [&.active]:text-zinc-950 [&.active]:shadow-[var(--nav-pill-active-shadow)] [&.active]:backdrop-blur-md dark:[&.active]:border-white/15 dark:[&.active]:bg-white/10 dark:[&.active]:text-white"
+      className="inline-flex items-center whitespace-nowrap rounded-lg border border-transparent px-2.5 py-1.5 text-sm font-medium text-zinc-500 transition-all duration-300 ease-out hover:-translate-y-px hover:bg-zinc-950/8 hover:text-zinc-950 hover:backdrop-blur-md dark:text-zinc-400 dark:hover:bg-white/8 dark:hover:text-zinc-100 [&.active]:-translate-y-px [&.active]:border-zinc-950/15 [&.active]:bg-zinc-950/10 [&.active]:text-zinc-950 [&.active]:shadow-(--nav-pill-active-shadow) [&.active]:backdrop-blur-md dark:[&.active]:border-white/15 dark:[&.active]:bg-white/10 dark:[&.active]:text-white"
     >
       {children}
     </Link>
