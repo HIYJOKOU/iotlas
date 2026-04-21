@@ -1,13 +1,26 @@
 import { Router } from 'express'
+import rateLimit from 'express-rate-limit'
 import { isAllowedNetwork } from '../constants/networks.js'
+import { validatorsRateLimitConfig } from '../config/http.js'
 import { getValidators } from '../services/validators.service.js'
 
 const router = Router()
 
-router.get('/:network/validators', async (req, res) => {
+const validatorsRateLimit = rateLimit({
+  windowMs: validatorsRateLimitConfig.windowMs,
+  max: validatorsRateLimitConfig.max,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: {
+    ok: false,
+    message: 'Too many validator requests, try again later.',
+  },
+})
+
+router.get('/:network/validators', validatorsRateLimit, async (req, res) => {
   const { network } = req.params
 
-  if (!isAllowedNetwork(network)) {
+  if (typeof network !== 'string' || !isAllowedNetwork(network)) {
     return res.status(404).json({
       ok: false,
       message: 'Network not found',

@@ -92,6 +92,10 @@
 - Implemented distance-based validator clustering that updates dynamically with camera zoom level.
 - Added a validator cluster dropdown (desktop anchored to marker, mobile as bottom sheet) with validator cards, location and voting power.
 - Improved globe responsiveness.
+- added configurable backend CORS allowlist
+- added rate limiting for validators endpoint
+- added short in-memory cache for validators responses
+- added basic websocket hardening
 
 #### Thoughts
 
@@ -100,7 +104,30 @@
 - I also used AI support during this part, mostly to explore possible implementation approaches, debug edge cases, and rethink the structure when the globe interactions became harder to reason about. It helped speed up experimentation, but the final behavior still required manual testing and adjustment.
 - Because of that, some parts of the globe logic are still more improvised than I would like. The current version works, but it may need another cleanup pass once the expected interaction model becomes fully stable.
 
-### Next steps
+## Final outcome
 
-- Secure backend WebSocket
-- CORS, Rate Limiting, WebSocket Security Best Practices
+The project reached the planned MVP scope. The application now has a working monorepo structure with a React + Vite + TypeScript frontend, an Express + TypeScript backend, and a real data flow between the client and server.
+
+The main MVP feature is the validator infrastructure globe. Validators are fetched from the IOTA network, enriched with geolocation data, grouped into dynamic clusters, and displayed on an interactive 3D globe. The globe works both on desktop and mobile, with marker interactions, validator details, location data, and voting power information.
+
+The home page also includes live network updates through WebSocket, basic snapshot/checkpoint activity, validator status. The app supports switching between networks.
+
+Overall, the project became a functional MVP of `gIOTA.live`: a geo-focused IOTA network dashboard that visualizes validator and provides a foundation for future real-time network insights.
+
+### What went well
+
+- The core idea of using a globe as the visual centerpiece works well `visually`.
+- Validator geolocation coverage was much better than expected after switching to the `ip-api.com` batch endpoint.
+- Dynamic clustering made the globe more readable and helped avoid marker overload in dense validator regions.
+- The WebSocket flow made the dashboard feel more alive.
+- AI tools were useful for fast prototyping, design exploration, debugging, and generating visual assets.
+- My blockchain knowledge increased drastically during the project, highlighting the difference between visually impressive data and technically meaningful network metrics.
+
+### What could be improved later
+
+- Refactor the `ValidatorGlobe` logic into smaller, clearer parts.
+- Improve retry logic for geolocation lookups.
+- Decide more carefully which IOTA metrics are technically meaningful to show in real time.
+- Improve the activity stream once checkpoints, transactions, blocks, and snapshots are better understood.
+- Add more detailed validator pages and possibly historical/network statistics.
+- Consider persistent caching if validator geolocation lookups or network data become heavier.

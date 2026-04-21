@@ -1,5 +1,6 @@
 import { WebSocket } from 'ws'
 import type { Network } from '../constants/networks.js'
+import { websocketSecurityConfig } from '../config/http.js'
 import { startHomeRealtimeStream } from '../services/home-realtime.service.js'
 import type { HomeRealtimePayload } from '../../../shared/src/types/home-realtime.js'
 
@@ -69,6 +70,11 @@ function getHomeHub(network: Network) {
 
 export function subscribeToHomeHub(network: Network, websocket: WebSocket) {
   const hub = getHomeHub(network)
+
+  if (hub.clients.size >= websocketSecurityConfig.maxClientsPerNetwork) {
+    websocket.close(1013, 'Too many clients')
+    return
+  }
 
   hub.clients.add(websocket)
   clientAliveState.set(websocket, true)

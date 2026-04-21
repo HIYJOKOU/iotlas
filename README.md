@@ -45,10 +45,11 @@ Client env file:
 
 - `client/.env.example`
 
-Variable:
+Variables:
 
 ```bash
 VITE_API_URL=http://localhost:3001
+VITE_WS_URL=ws://localhost:3001
 ```
 
 Backend env file:
@@ -59,6 +60,12 @@ Variables:
 
 ```bash
 PORT=3001
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
+VALIDATORS_RATE_LIMIT_WINDOW_MS=60000
+VALIDATORS_RATE_LIMIT_MAX=30
+VALIDATORS_CACHE_TTL_MS=15000
+WS_MAX_CLIENTS_PER_NETWORK=100
+WS_MAX_PAYLOAD_BYTES=16384
 IOTA_MAINNET_RPC_URL=https://api.mainnet.iota.cafe:443
 IOTA_TESTNET_RPC_URL=https://api.testnet.iota.cafe:443
 IOTA_DEVNET_RPC_URL=https://api.devnet.iota.cafe:443
