@@ -25,6 +25,23 @@ export function getTopLocation(values: Array<string | null | undefined>) {
   }
 }
 
+export function getValidatorDisplayName(name: string | null | undefined) {
+  const trimmedName = name?.trim()
+
+  return trimmedName ? trimmedName : 'Unknown validator'
+}
+
+export function getValidatorInitials(name: string | null | undefined) {
+  const parts = getValidatorDisplayName(name).split(/\s+/).filter(Boolean)
+
+  if (parts.length === 0) return '?'
+
+  return parts
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('')
+}
+
 export function getValidatorStats(
   validators: Array<{
     country: string | null

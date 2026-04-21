@@ -73,6 +73,7 @@
 - Added file `vite-env.d.ts` with custom types for Vite environment variables.
 - Extract common TypeScript types into a shared package/folder and reuse them across the backend and frontend to avoid duplicated type definitions.
 - Create a dedicated validators page.
+- Pimped the about page with more project details and a technology stack overview.
 
 ### Thoughts
 

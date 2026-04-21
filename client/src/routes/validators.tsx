@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useValidators } from '@/hooks/use-validators'
 import { formatCompactMetric, formatDigestCompact } from '@/utils/formatters'
+import { getValidatorDisplayName, getValidatorInitials } from '@/utils/validators'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { createFileRoute } from '@tanstack/react-router'
 
@@ -13,7 +14,7 @@ function RouteComponent() {
 
   const validatorRows = validators.map((validator) => ({
     id: validator.iotaAddress,
-    name: validator.name || 'Unknown validator',
+    name: getValidatorDisplayName(validator.name),
     address: validator.iotaAddress,
     imageUrl: validator.imageUrl,
     host: validator.host ?? '-',
@@ -43,7 +44,7 @@ function RouteComponent() {
 
           {!isLoading && !error && validatorRows.length > 0 ? (
             <div className="overflow-x-auto rounded-xl border border-white/10">
-              <table className="w-full min-w-[720px] text-left text-sm">
+              <table className="w-full min-w-180 text-left text-sm">
                 <thead className="bg-white/5 text-xs uppercase tracking-[0.18em] text-muted-foreground">
                   <tr>
                     <th className="px-4 py-3 font-medium">Validator</th>
@@ -126,13 +127,3 @@ function ValidatorLogo({
   )
 }
 
-function getValidatorInitials(name: string) {
-  const parts = name.trim().split(/\s+/).filter(Boolean)
-
-  if (parts.length === 0) return '?'
-
-  return parts
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase() ?? '')
-    .join('')
-}
