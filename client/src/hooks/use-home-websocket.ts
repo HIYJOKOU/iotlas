@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { HomeRealtimePayload } from '@shared/types'
+import type { HomeRealtimePayload } from '@/types'
 import { getHomeWebSocketUrl } from '@/api/init-api'
 import type { Network } from '@/lib/network'
 

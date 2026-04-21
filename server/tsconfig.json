@@ -3,10 +3,6 @@
     "rootDir": "..",
     "outDir": "./dist",
 
-    "paths": {
-      "@shared/*": ["../shared/src/*"]
-    },
-
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "target": "es2020",
@@ -28,5 +24,5 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
-  "include": ["src", "../shared/src"]
+  "include": ["src"]
 }

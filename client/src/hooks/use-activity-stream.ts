@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { HomeActivityItem } from '@shared/types'
+import type { HomeActivityItem } from '@/types'
 
 const MAX_SEEN_ACTIVITY_IDS = 400
 

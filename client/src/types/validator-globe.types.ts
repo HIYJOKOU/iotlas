@@ -1,4 +1,4 @@
-import type { ValidatorListItem } from '@shared/types'
+import type { ValidatorListItem } from '@/types'
 
 export type GlobeValidatorPoint = ValidatorListItem & {
   id: string

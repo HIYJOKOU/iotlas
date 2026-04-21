@@ -1,5 +1,5 @@
 import type { GlobeValidatorCluster, GlobeValidatorPoint } from '@/types/validator-globe.types'
-import type { ValidatorListItem } from '@shared/types'
+import type { ValidatorListItem } from '@/types'
 
 export function shortAddress(address?: string | null) {
   if (!address) return 'Unknown validator'

@@ -2,7 +2,7 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import Globe from 'react-globe.gl'
 import type { GlobeMethods } from 'react-globe.gl'
-import type { ValidatorListItem } from '@shared/types'
+import type { ValidatorListItem } from '@/types'
 import { Color, NoColorSpace, ShaderMaterial, TextureLoader } from 'three'
 
 import { glassMapFragmentShader, glassMapVertexShader } from './material'
