@@ -71,6 +71,7 @@
 - Implemented a per-network WebSocket hub on the server and a client-side realtime flow for snapshots and checkpoint activity. `/ws/:network/home` path.
 - Updated the home page to display live validator status and recent activity.
 - Added file `vite-env.d.ts` with custom types for Vite environment variables.
+- Extract common TypeScript types into a shared package/folder and reuse them across the backend and frontend to avoid duplicated type definitions.
 
 ### Thoughts
 
@@ -82,7 +83,6 @@
 
 ## Next steps
 
-- Extract common TypeScript types into a shared package/folder and reuse them across the backend and frontend to avoid duplicated type definitions.
 - Make the globe fully responsive across desktop, tablet, and mobile views.
 - Add validator locations to the globe and group nearby validators into clusters.
 - Create a dedicated validators page with a searchable list and a validator details view.

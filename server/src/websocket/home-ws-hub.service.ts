@@ -1,7 +1,7 @@
 import { WebSocket } from 'ws'
 import type { Network } from '../constants/networks.js'
 import { startHomeRealtimeStream } from '../services/home-realtime.service.js'
-import type { HomeRealtimePayload } from '../types/websocket.types.js'
+import type { HomeRealtimePayload } from '../../../shared/src/types/home-realtime.js'
 
 type SnapshotPayload = Extract<HomeRealtimePayload, { type: 'snapshot' }>
 type ActivityBatchPayload = Extract<HomeRealtimePayload, { type: 'activity_batch' }>

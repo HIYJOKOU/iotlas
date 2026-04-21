@@ -42,7 +42,7 @@ function Index() {
   return (
     <div className="mx-auto w-full max-w-6xl px-2 py-6 md:px-6 -mt-16 md:py-8">
       <div className="flex justify-center pb-6 md:pb-8">
-        <Suspense fallback={<div className="h-[600px] w-[900px] max-w-full rounded-3xl" />}>
+        <Suspense fallback={<div className="h-150 w-225 max-w-full rounded-3xl" />}>
           <GlobeTest />
         </Suspense>
       </div>

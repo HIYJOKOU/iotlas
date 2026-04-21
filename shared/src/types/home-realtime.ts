@@ -1,4 +1,4 @@
-import type { Network } from '@/lib/network'
+import type { Network } from './network'
 
 export type HomeLiveSnapshot = {
   network: Network

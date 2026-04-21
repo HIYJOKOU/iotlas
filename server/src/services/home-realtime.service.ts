@@ -1,5 +1,5 @@
 import type { Network } from '../constants/networks.js'
-import type { HomeRealtimePayload } from '../types/websocket.types.js'
+import type { HomeRealtimePayload } from '../../../shared/src/types/home-realtime.js'
 import { fetchHomeLiveSnapshot, fetchNewCheckpointActivity } from './iota-home-live.service.js'
 
 type StartHomeRealtimeStreamOptions = {

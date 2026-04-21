@@ -1,5 +1,5 @@
 import type { Network } from '../constants/networks.js'
-import type { HomeActivityItem, HomeLiveSnapshot } from '../types/websocket.types.js'
+import type { HomeActivityItem, HomeLiveSnapshot } from '../../../shared/src/types/home-realtime.js'
 import { getIotaClient } from './iota.service.js'
 
 type FetchNewCheckpointActivityOptions = {
