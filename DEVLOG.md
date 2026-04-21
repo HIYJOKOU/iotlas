@@ -71,3 +71,18 @@
 - Implemented a per-network WebSocket hub on the server and a client-side realtime flow for snapshots and checkpoint activity. `/ws/:network/home` path.
 - Updated the home page to display live validator status and recent activity.
 - Added file `vite-env.d.ts` with custom types for Vite environment variables.
+
+### Thoughts
+
+- During the implementation, I realized that I should have compared the IOTA network model with Monad’s architecture much earlier.
+  -In Monad, each block is produced by a single validator, which makes it relatively straightforward to track block production and visualize it on a globe in real time. IOTA works differently — blocks/checkpoints are created through a more complex validator set and consensus process, so mapping “live block creation” directly to a single validator/location is not as clear or meaningful.
+- Because of that, I think the globe should not try to behave like a real-time block production map. Instead, it makes more sense to use it as an infrastructure/validator distribution view showing where validators are located, how they are grouped.
+- I also got a bit lost during the implementation when deciding which blockchain metrics should actually be displayed on the home page. I was trying to mirror some ideas from Monad-style dashboards, but I realized that not all of those metrics translate well to IOTA. Since I’m still learning the deeper network-level concepts, I need to be more careful about which data is meaningful, technically accurate, and useful for users.
+- I’m also still not fully confident about the differences between checkpoints, transactions, blocks, and snapshots, and how each of them should be interpreted or visualized in the UI. Because of that, I need to better understand the data model before deciding what belongs in the real-time activity stream and what should stay as a static or periodically refreshed network metric.
+
+## Next steps
+
+- Extract common TypeScript types into a shared package/folder and reuse them across the backend and frontend to avoid duplicated type definitions.
+- Make the globe fully responsive across desktop, tablet, and mobile views.
+- Add validator locations to the globe and group nearby validators into clusters.
+- Create a dedicated validators page with a searchable list and a validator details view.
