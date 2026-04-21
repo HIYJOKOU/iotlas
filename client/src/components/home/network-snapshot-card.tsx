@@ -81,7 +81,7 @@ export function NetworkSnapshotCard({
                   ? 'text-amber-300'
                   : nodeStatus === 'degraded'
                     ? 'text-orange-300'
-                  : 'text-rose-300'
+                    : 'text-rose-300'
             }`}
           >
             {nodeStatus}

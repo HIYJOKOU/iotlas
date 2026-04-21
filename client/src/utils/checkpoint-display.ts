@@ -28,13 +28,13 @@ export function resolveLatestCheckpoint(
 
   return {
     latestCheckpoint: isActivityCurrent
-      ? activity?.sequenceNumber ?? snapshot?.latestCheckpoint ?? '-'
-      : snapshot?.latestCheckpoint ?? activity?.sequenceNumber ?? '-',
+      ? (activity?.sequenceNumber ?? snapshot?.latestCheckpoint ?? '-')
+      : (snapshot?.latestCheckpoint ?? activity?.sequenceNumber ?? '-'),
     latestCheckpointTimestampMs: isActivityCurrent
-      ? activity?.timestampMs ?? null
-      : snapshot?.latestCheckpointTimestampMs ?? null,
-    txCount: isActivityCurrent ? activity?.txCount ?? null : null,
-    digest: isActivityCurrent ? activity?.digest ?? null : null,
+      ? (activity?.timestampMs ?? null)
+      : (snapshot?.latestCheckpointTimestampMs ?? null),
+    txCount: isActivityCurrent ? (activity?.txCount ?? null) : null,
+    digest: isActivityCurrent ? (activity?.digest ?? null) : null,
   }
 }
 

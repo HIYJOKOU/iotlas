@@ -64,7 +64,9 @@ export function ChainActivityCard({ snapshot, latestActivity, status }: ChainAct
         <div className="rounded-xl border border-white/10 bg-white/2 px-3 py-2.5">
           <p className="small-tracking-title text-xs">Latest digest</p>
 
-          <p className="truncate pt-1  text-base text-foreground">{formatDigestCompact(checkpoint.digest)}</p>
+          <p className="truncate pt-1  text-base text-foreground">
+            {formatDigestCompact(checkpoint.digest)}
+          </p>
         </div>
       </CardContent>
     </Card>

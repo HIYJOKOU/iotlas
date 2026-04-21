@@ -17,13 +17,6 @@ export function getEpochMetrics({
   epochDurationMs: number
   nowMs: number
 }) {
-  if (!Number.isFinite(epochStartMs) || !Number.isFinite(epochDurationMs) || epochDurationMs <= 0) {
-    return {
-      progressPercent: null,
-      timeLeftMs: null,
-    }
-  }
-
   const elapsedMs = Math.min(Math.max(0, nowMs - epochStartMs), epochDurationMs)
 
   return {
