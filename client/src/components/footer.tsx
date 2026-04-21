@@ -1,8 +1,8 @@
 export function Footer() {
   return (
-    <footer className="py-4 text-zinc-600 dark:text-zinc-400 md:py-6">
+    <footer className="py-4 text-zinc-600 dark:text-zinc-400 md:py-0">
       <div className="mx-auto w-full max-w-6xl px-3 md:px-4">
-        <div className="flex flex-col items-center gap-2 rounded-2xl px-3 py-2 text-center text-sm md:flex-row md:items-center md:justify-between md:gap-3 md:px-4 md:py-3 md:text-sm md:text-left">
+        <div className="flex flex-col items-center gap-2 rounded-2xl px-0 py-2 text-center text-sm md:flex-row md:items-center md:justify-between md:gap-3 md:px-0 md:py-3 md:text-sm md:text-left">
           <div className="min-w-0">
             <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-300 md:text-base">
               <span className="text-indigo-600 dark:text-indigo-500">gIOTA.live</span>

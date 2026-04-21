@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import type { HomeRealtimePayload } from '@shared/types'
 import { getHomeWebSocketUrl } from '@/api/init-api'
 import type { Network } from '@/lib/network'
-import type { HomeRealtimePayload } from '@/types/home-realtime.types'
 
 type ConnectionState = 'connecting' | 'open' | 'closed'
 

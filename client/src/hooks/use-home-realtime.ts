@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
+import type { HomeLiveSnapshot, HomeRealtimePayload } from '@shared/types'
 import { useNetwork } from './use-network'
 import type { Network } from '@/lib/network'
-import type { HomeLiveSnapshot, HomeRealtimePayload } from '@/types/home-realtime.types'
 import { useActivityStream } from './use-activity-stream'
 import { useHomeWebSocket } from './use-home-websocket'
 
