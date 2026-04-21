@@ -1,5 +1,3 @@
-import type { Network } from '@/lib/network'
-
 export type ValidatorListItem = {
   iotaAddress: string
   name: string
@@ -17,19 +15,6 @@ export type ValidatorListItem = {
   locationUpdatedAt: number | null
 }
 
-export type HomeOverview = {
-  network: Network
-  epoch: string
-  protocolVersion: string | null
-  validators: ValidatorListItem[]
-  stats: {
-    total: number
-    withLocation: number
-    withoutLocation: number
-    generatedAt: number
-  }
-}
-
-export type HomeOverviewResponse = {
-  data: HomeOverview
+export type ValidatorsResponse = {
+  data: ValidatorListItem[]
 }

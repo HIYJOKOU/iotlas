@@ -1,5 +1,3 @@
-import type { Network } from '../constants/networks.js'
-
 export type MinimalIotaValidator = {
   name: string
   iotaAddress: string
@@ -14,8 +12,6 @@ export type MinimalIotaValidator = {
   projectUrl?: string
   description?: string
 }
-
-export type IotaValidator = MinimalIotaValidator & Record<string, unknown>
 
 export type ValidatorLocationSource = 'ip-api' | 'unknown'
 
@@ -67,41 +63,4 @@ export type GeoIpResponse = {
   city?: string
   lat?: number
   lon?: number
-}
-
-export type IotaSystemStateVersioned<T> = {
-  V1?: T
-  V2?: T
-}
-
-export type MinimalSystemState = {
-  epoch: string
-  protocolVersion?: string
-  activeValidators?: unknown[]
-}
-
-export type HomeOverview = {
-  network: Network
-  epoch: string
-  protocolVersion: string | null
-  validators: ValidatorListItem[]
-  stats: {
-    total: number
-    withLocation: number
-    withoutLocation: number
-    generatedAt: number
-  }
-}
-
-export type HomeOverviewFull = {
-  network: Network
-  epoch: string
-  protocolVersion: string | null
-  validators: ValidatorWithLocation<IotaValidator>[]
-  stats: {
-    total: number
-    withLocation: number
-    withoutLocation: number
-    generatedAt: number
-  }
 }

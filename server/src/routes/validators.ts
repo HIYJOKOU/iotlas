@@ -1,10 +1,10 @@
 import { Router } from 'express'
 import { isAllowedNetwork } from '../constants/networks.js'
-import { getHomeOverview } from '../services/home.service.js'
+import { getValidators } from '../services/validators.service.js'
 
 const router = Router()
 
-router.get('/:network/home', async (req, res) => {
+router.get('/:network/validators', async (req, res) => {
   const { network } = req.params
 
   if (!isAllowedNetwork(network)) {
@@ -15,17 +15,17 @@ router.get('/:network/home', async (req, res) => {
   }
 
   try {
-    const overview = await getHomeOverview(network)
+    const validators = await getValidators(network)
 
     return res.status(200).json({
-      data: overview,
+      data: validators,
     })
   } catch (error) {
-    console.error('Failed to fetch home overview:', error)
+    console.error('Failed to fetch validators:', error)
 
     return res.status(500).json({
       ok: false,
-      message: 'Failed to fetch home overview',
+      message: 'Failed to fetch validators',
     })
   }
 })

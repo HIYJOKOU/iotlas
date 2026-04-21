@@ -1,26 +1,7 @@
 import type { Network } from '../constants/networks.js'
-import type {
-  HomeOverview,
-  ValidatorListItem,
-  ValidatorWithLocation,
-} from '../types/iota-validator.types.js'
+import type { ValidatorListItem, ValidatorWithLocation } from '../types/iota-validator.types.js'
 import { getIotaClient } from './iota.service.js'
 import { attachLocationsToValidators } from './validator-location.service.js'
-
-function buildStats(
-  validators: Array<Pick<ValidatorWithLocation, 'lat' | 'lng'>>,
-): HomeOverview['stats'] {
-  const withLocation = validators.filter(
-    (validator) => validator.lat !== null && validator.lng !== null,
-  ).length
-
-  return {
-    total: validators.length,
-    withLocation,
-    withoutLocation: validators.length - withLocation,
-    generatedAt: Date.now(),
-  }
-}
 
 function toValidatorListItem(validator: ValidatorWithLocation): ValidatorListItem {
   return {
@@ -41,23 +22,13 @@ function toValidatorListItem(validator: ValidatorWithLocation): ValidatorListIte
   }
 }
 
-export async function getHomeOverview(network: Network): Promise<HomeOverview> {
+export async function getValidators(network: Network): Promise<ValidatorListItem[]> {
   const client = getIotaClient(network)
+
   const systemState = await client.getLatestIotaSystemState()
 
   const validators = systemState.activeValidators ?? []
   const validatorsWithLocation = await attachLocationsToValidators(validators)
 
-  const overviewBase = {
-    network,
-    epoch: systemState.epoch,
-    protocolVersion: systemState.protocolVersion ?? null,
-  }
-  const stats = buildStats(validatorsWithLocation)
-
-  return {
-    ...overviewBase,
-    validators: validatorsWithLocation.map(toValidatorListItem),
-    stats,
-  }
+  return validatorsWithLocation.map(toValidatorListItem)
 }

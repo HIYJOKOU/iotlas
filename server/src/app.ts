@@ -1,5 +1,5 @@
 import express from 'express'
-import homeRouter from './routes/home.js'
+import validatorsRouter from './routes/validators.js'
 import cors from 'cors'
 
 export const app = express()
@@ -11,4 +11,4 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true })
 })
 
-app.use('/api', homeRouter)
+app.use('/api', validatorsRouter)

@@ -174,3 +174,7 @@ html {
   --nav-pill-active-shadow:
     inset 0 1px 0 rgb(255 255 255 / 0.18), 0 10px 24px -12px rgb(255 255 255 / 0.18);
 }
+
+.small-tracking-title {
+  @apply font-medium uppercase tracking-[0.16em] text-muted-foreground;
+}

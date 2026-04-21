@@ -1,59 +1,120 @@
+import { lazy, Suspense, useMemo } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
-import { useHomeOverview } from '@/hooks/use-home-overview'
-import { Button } from '@/components/ui/button'
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { GlobeTest } from '@/components/globe-test'
+import { useHomeRealtime } from '@/hooks/use-home-realtime'
+import { useValidators } from '@/hooks/use-validators'
+import { formatNumber } from '@/utils/formatters'
+import { getTopLocation, getValidatorStats } from '@/utils/validators'
+import { MetricCard } from '@/components/home/metric-card'
+import { EpochSummaryCard } from '@/components/home/epoch-summary-card'
+import { ChainActivityCard } from '@/components/home/chain-activity-card'
+import { NetworkSnapshotCard } from '@/components/home/network-snapshot-card'
+
+const GlobeTest = lazy(async () => {
+  const module = await import('@/components/globe/globe')
+
+  return {
+    default: module.GlobeTest,
+  }
+})
 
 export const Route = createFileRoute('/')({
   component: Index,
 })
 
 function Index() {
-  const { network, data, error, isLoading, refresh } = useHomeOverview()
+  const { validators } = useValidators()
+  const { network, snapshot, currentActivity, connectionState, lastError } = useHomeRealtime()
+  const { validatorStats, topCountry, topCity } = useMemo(() => {
+    return {
+      validatorStats: getValidatorStats(validators),
+      topCountry: getTopLocation(validators.map((validator) => validator.country)),
+      topCity: getTopLocation(validators.map((validator) => validator.city)),
+    }
+  }, [validators])
+
+  const wsStatusLabel =
+    connectionState === 'open'
+      ? 'live'
+      : connectionState === 'connecting'
+        ? 'connecting'
+        : 'offline'
 
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-6 md:px-6 md:py-8">
-      <div className="flex justify-center items-center pb-4">
-        <GlobeTest />
+    <div className="mx-auto w-full max-w-6xl px-2 py-6 md:px-6 -mt-16 md:py-8">
+      <div className="flex justify-center pb-6 md:pb-8">
+        <Suspense fallback={<div className="h-[600px] w-[900px] max-w-full rounded-3xl" />}>
+          <GlobeTest />
+        </Suspense>
       </div>
-      <section className="relative z-20 mx-auto grid w-full max-w-6xl gap-4 px-4 pb-10 md:grid-cols-3 md:px-6">
-        <Card className="border-white/10 bg-background/60 backdrop-blur-xl">
-          <CardHeader>
-            <CardDescription className="text-sm text-muted-foreground">Status</CardDescription>
-            <CardTitle className="text-lg font-medium">
-              {isLoading ? 'Loading overview...' : error ? 'Error' : 'Ready'}
-            </CardTitle>
-          </CardHeader>
-        </Card>
 
-        <Card className="border-white/10 bg-background/60 backdrop-blur-xl">
-          <CardHeader>
-            <CardDescription className="text-sm text-muted-foreground">Validators</CardDescription>
-            <CardTitle className="text-lg font-medium">{data?.stats.total ?? '-'}</CardTitle>
-          </CardHeader>
-        </Card>
+      <EpochSummaryCard
+        snapshot={snapshot}
+        fallbackNetwork={network}
+        stats={{
+          validators: snapshot?.activeValidators ?? validators.length,
+          countries: validatorStats.countries,
+          cities: validatorStats.cities,
+        }}
+      />
 
-        <Card className="border-white/10 bg-background/60 backdrop-blur-xl">
-          <CardHeader>
-            <CardDescription className="text-sm text-muted-foreground">Epoch</CardDescription>
-            <CardTitle className="text-lg font-medium">{data?.epoch ?? '-'}</CardTitle>
-          </CardHeader>
-        </Card>
+      <section className="relative z-20 mx-auto grid w-full max-w-6xl gap-4 pb-4 md:grid-cols-12 md:px-0">
+        <ChainActivityCard
+          snapshot={snapshot}
+          latestActivity={currentActivity}
+          status={wsStatusLabel}
+        />
+
+        <NetworkSnapshotCard
+          snapshot={snapshot}
+          latestActivity={currentActivity}
+          status={wsStatusLabel}
+          lastError={lastError}
+        />
       </section>
-      <section className="relative z-20 mx-auto w-full max-w-6xl px-4 pb-16 md:px-6">
-        <Card className="border-white/10 bg-background/60 backdrop-blur-xl">
-          <CardHeader className="-gap-1">
-            <div className="flex items-center justify-between gap-3">
-              <CardDescription className="text-sm text-muted-foreground">
-                Backend response
-              </CardDescription>
-              <Button variant="secondary" type="button" onClick={refresh} disabled={isLoading}>
-                Refresh
-              </Button>
-            </div>
-            <CardTitle className="text-lg font-semibold">/api/{network}/home</CardTitle>
-          </CardHeader>
-        </Card>
+
+      <section className="relative z-20 mx-auto grid w-full max-w-6xl grid-cols-2 gap-2 px-0 pb-10 sm:gap-3 md:grid-cols-12 md:gap-4 md:px-0">
+        <MetricCard
+          label="Reference gas price"
+          value={
+            snapshot?.referenceGasPrice ? formatNumber(Number(snapshot.referenceGasPrice)) : '-'
+          }
+        />
+
+        <MetricCard
+          label="Average APY"
+          value={
+            snapshot?.avgApy === null || snapshot?.avgApy === undefined
+              ? '-'
+              : `${snapshot.avgApy.toFixed(2)}%`
+          }
+        />
+
+        <MetricCard
+          label="Leader APY"
+          value={
+            snapshot?.leaderApy === null || snapshot?.leaderApy === undefined
+              ? '-'
+              : `${snapshot.leaderApy.toFixed(2)}%`
+          }
+        />
+
+        <MetricCard
+          label="Mapped validators"
+          value={`${validatorStats.withLocation} / ${validators.length}`}
+          helper={`without location ${validatorStats.withoutLocation}`}
+        />
+
+        <MetricCard
+          label="Top country"
+          value={topCountry?.name ?? '-'}
+          helper={topCountry ? `${formatNumber(topCountry.count)} validators` : '-'}
+        />
+
+        <MetricCard
+          label="Top city"
+          value={topCity?.name ?? '-'}
+          helper={topCity ? `${formatNumber(topCity.count)} validators` : '-'}
+        />
       </section>
     </div>
   )

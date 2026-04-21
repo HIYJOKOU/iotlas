@@ -1,17 +1,17 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchHomeOverview } from '@/api/home-api'
+import { fetchValidators } from '@/api/validators-api'
 import { useIotaApi } from './use-iota-api'
 
-export function useHomeOverview() {
+export function useValidators() {
   const { network, api } = useIotaApi()
   const query = useQuery({
-    queryKey: ['home-overview', network],
-    queryFn: ({ signal }) => fetchHomeOverview(api, signal),
+    queryKey: ['validators', network],
+    queryFn: ({ signal }) => fetchValidators(api, signal),
   })
 
   return {
     network,
-    data: query.data ?? null,
+    validators: query.data ?? [],
     isLoading: query.isLoading,
     error: query.error instanceof Error ? query.error.message : null,
     refresh: () => query.refetch(),

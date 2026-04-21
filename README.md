@@ -71,6 +71,26 @@ IOTA_DEVNET_RPC_URL=https://api.devnet.iota.cafe:443
 - data fetching and caching is handled by TanStack Query
 - backend aggregates and enriches IOTA validator data
 
+## Realtime home feed
+
+The home view uses a WebSocket stream for live network updates.
+
+Client env:
+
+- `VITE_API_URL` - HTTP API base URL
+- `VITE_WS_URL` - optional WebSocket base URL override
+
+WebSocket endpoint:
+
+- `/ws/:network/home`
+
+The stream delivers:
+
+- snapshot updates
+- checkpoint activity batches
+- heartbeat messages
+- error events
+
 ## Run locally
 
 Install dependencies:

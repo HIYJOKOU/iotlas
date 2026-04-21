@@ -62,3 +62,12 @@
 - make globe fully responsive
 - add more information about chain on the `/home` api call
 - work on websocket connection to get live updates from the server
+
+## Day 4 - Websocket connection and live updates
+
+### Completed
+
+- Added realtime home updates over WebSocket.
+- Implemented a per-network WebSocket hub on the server and a client-side realtime flow for snapshots and checkpoint activity. `/ws/:network/home` path.
+- Updated the home page to display live validator status and recent activity.
+- Added file `vite-env.d.ts` with custom types for Vite environment variables.
