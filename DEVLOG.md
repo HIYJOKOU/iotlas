@@ -83,7 +83,24 @@
 - I also got a bit lost during the implementation when deciding which blockchain metrics should actually be displayed on the home page. I was trying to mirror some ideas from Monad-style dashboards, but I realized that not all of those metrics translate well to IOTA. Since I’m still learning the deeper network-level concepts, I need to be more careful about which data is meaningful, technically accurate, and useful for users.
 - I’m also still not fully confident about the differences between checkpoints, transactions, blocks, and snapshots, and how each of them should be interpreted or visualized in the UI. Because of that, I need to better understand the data model before deciding what belongs in the real-time activity stream and what should stay as a static or periodically refreshed network metric.
 
-## Next steps
+### Same day update - Validator globe interactions and layout polish
 
-- Make the globe fully responsive across desktop, tablet, and mobile views.
-- Add validator locations to the globe and group nearby validators into clusters.
+#### Completed
+
+- Replaced the prototype globe with `ValidatorGlobe` and connected it to real validator location data.
+- Added marker rendering for single validators and cluster markers with count badges.
+- Implemented distance-based validator clustering that updates dynamically with camera zoom level.
+- Added a validator cluster dropdown (desktop anchored to marker, mobile as bottom sheet) with validator cards, location and voting power.
+- Improved globe responsiveness.
+
+#### Thoughts
+
+- The validator globe is now much closer to the intended MVP experience, but this part of the implementation also became one of the messier areas of the codebase.
+- There are not many ready-made examples or references for combining `react-globe.gl`, custom HTML markers, responsive layout behavior, clustering, anchored dropdowns, in one flow, so a lot of the solution had to be discovered by testing and iteration.
+- I also used AI support during this part, mostly to explore possible implementation approaches, debug edge cases, and rethink the structure when the globe interactions became harder to reason about. It helped speed up experimentation, but the final behavior still required manual testing and adjustment.
+- Because of that, some parts of the globe logic are still more improvised than I would like. The current version works, but it may need another cleanup pass once the expected interaction model becomes fully stable.
+
+### Next steps
+
+- Secure backend WebSocket
+- CORS, Rate Limiting, WebSocket Security Best Practices
