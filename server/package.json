@@ -2,11 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "type": "module",
-  "main": "dist/server.js",
+  "main": "dist/server/src/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.json",
-    "start": "node dist/src/server.js",
+    "start": "node dist/server/src/server.js",
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
