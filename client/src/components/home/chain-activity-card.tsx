@@ -46,7 +46,7 @@ export function ChainActivityCard({ snapshot, latestActivity, status }: ChainAct
             <div className="space-y-1">
               <p className="small-tracking-title text-xs">Checkpoint</p>
 
-              <p className="text-xl leading-none font-semibold text-foreground sm:text-4xl">
+              <p className="text-3xl leading-none font-semibold text-foreground sm:text-4xl">
                 <AnimatedNumber value={formatCheckpointValue(checkpoint.latestCheckpoint)} />
               </p>
             </div>
